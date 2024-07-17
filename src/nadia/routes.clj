@@ -1,6 +1,7 @@
 (ns nadia.routes
   (:require
-   [org.httpkit.server :as server]))
+   [org.httpkit.server :as server]
+   [hiccup2.core :refer [html]]))
 
 3
 "Nadia"
@@ -15,25 +16,37 @@ str
 "teodor-navnt"
 teodor-navn
 
+(html [:div
+       [:p]
+       ])
+
 +
 (* 1 2 3 4)
 
-(defn del1 []
-  (str "<h1 style=\"background-color:blue\">heiii!!!!!!!!!!!! </h1>"
-       (+ 1 2)
-       "<br>"
-       "Nadia"))
-
-(defn del2 []
-  "hei")
+(defn hamburger []
+  (html 
+   [:html
+    [:body {:style {:background-color :grey}}
+     [:div {:style {:background-color :dodgerblue}}
+      [:h2 {:style {:background-color :pink}}
+       "Heiiiiii hallooo"]
+      [:p {:style {:background-color :lightgreen
+                   :font-size :120px
+                   :color :deeppink}}
+       "Dette er en skikkelig fin paragraf med masse spennendene tekstterer"]]]]))
 
 (defn handler [req]
   {:headers {"Content-Type" "text/html"}
-   :body (str (del1)
-              "<br>"
-              (del2))})
+   :body (str (hamburger))})
 
-(defonce server (server/run-server #'handler {:port 1234}))
+(defn run-server []
+  (server/run-server #'handler {:port 7777}))
+
+(defonce server (run-server))
 
 (comment
-  (clojure.repl/doc server/run-server))
+  (server)
+  (alter-var-root #'server (constantly (run-server)))
+  server
+  (clojure.repl/doc server/run-server)
+  )
