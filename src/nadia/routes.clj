@@ -43,7 +43,7 @@ teodor-navn
 
 (defonce server (run-server))
 
-(defn klubbvask [])
+(defn klubbvask [x])
 
 (comment
   (server)
