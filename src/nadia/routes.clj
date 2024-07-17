@@ -17,14 +17,13 @@ str
 teodor-navn
 
 (html [:div
-       [:p]
-       ])
+       [:p]])
 
 +
 (* 1 2 3 4)
 
 (defn hamburger []
-  (html 
+  (html
    [:html
     [:body {:style {:background-color :grey}}
      [:div {:style {:background-color :dodgerblue}}
@@ -44,9 +43,10 @@ teodor-navn
 
 (defonce server (run-server))
 
+(defn klubbvask [])
+
 (comment
   (server)
   (alter-var-root #'server (constantly (run-server)))
   server
-  (clojure.repl/doc server/run-server)
-  )
+  (clojure.repl/doc server/run-server))
